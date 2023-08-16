@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Code/lib/echarts.min.js"></script>
+    <script src="../Code/theme/itcast.js"></script>
+
+
+</head>
+
+<body>
+    <div style="width: 600px;height: 400px;"></div>
+
+    <script>
+        var mChars = echarts.init(document.querySelector('div'),'itcast')
+
+        var pieData = [
+            {
+                name:'淘宝',
+                value:11231
+            },
+            {
+                name:'京东',
+                value:22673
+            },
+            {
+                name:'唯品会',
+                value:6123
+            },
+            {
+                name:'1号店',
+                value:8989
+            },
+            {
+                name:'得物',
+                value:8989
+            },
+            {
+                name:'识物',
+                value:7070
+            },
+        ]
+        var option = {
+            color: ['red','green','blue','skyblue','purple'],
+          series: [
+            {
+                type:'pie',
+                data:pieData,
+                // color:['pink','yellow','black','orange','red'],
+                label:{
+                    show:true,
+                    // formatter:'hehhe'
+                    formatter:function(arg){
+                    //     console.log(arg);
+                        return arg.name + '平台\n' + arg.value + '元\n' + arg.percent + '%'
+                    }
+                },
+                // radius:'20%'//饼图半径
+                // radius: ['50%','75%'],
+                // roseType:'radius',//南丁格尔图
+                // selectedMode:'single'
+                selectedMode:'multiple',
+                // slectedOffset:30
+
+            }
+          ]
+
+        }
+
+        mChars.setOption(option)
+    </script>
+</body>
+
+
+</html>

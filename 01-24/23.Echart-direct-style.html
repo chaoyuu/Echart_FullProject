@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高亮/直接样式</title>
+    <script src="../Code/lib/echarts.min.js"></script>
+    <script src="../Code/theme/itcast.js"></script>
+
+
+</head>
+
+<body>
+    <div style="width: 600px;height: 400px;"></div>
+
+    <script>
+        var mChars = echarts.init(document.querySelector('div'),'itcast')
+
+        var pieData = [
+            {
+                name:'淘宝',
+                value:11231,
+                itemStyle: {
+                    color:'blue'
+                },
+                label:{
+                    color:'green'
+                },
+                emphasis:{
+                    itemStyle:{
+                        color:'deeppink'
+                    },
+                    label: {
+                        color:'black'
+                    }
+                }
+            },
+            {
+                name:'京东',
+                value:22673
+            },
+            {
+                name:'唯品会',
+                value:6123
+            },
+            {
+                name:'1号店',
+                value:8989
+            },
+            {
+                name:'得物',
+                value:8989
+            },
+            {
+                name:'识物',
+                value:7070
+            },
+        ]
+        var option = {
+            title: {
+                text:'饼图的测试',
+                textStyle:{
+                    color:'blue'
+                }
+            },
+            color: ['red','green','blue','skyblue','purple'],
+          series: [
+            {
+                type:'pie',
+                data:pieData,
+                // color:['pink','yellow','black','orange','red'],
+                label:{
+                    show:true,
+                    // formatter:'hehhe'
+                    formatter:function(arg){
+                    //     console.log(arg);
+                        return arg.name + '平台\n' + arg.value + '元\n' + arg.percent + '%'
+                    }
+                },
+        
+
+            }
+          ]
+
+        }
+
+        mChars.setOption(option)
+    </script>
+</body>
+
+
+</html>

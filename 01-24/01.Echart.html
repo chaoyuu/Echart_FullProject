@@ -6,29 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script  src="./Code/lib/echarts.min.js"></script>
+    <script src="../Code/lib/echarts.min.js"></script>
 
 </head>
 
 <body>
     <div style="width: 600px;height: 400px;"></div>
-    
+
     <script>
         var mChars = echarts.init(document.querySelector('div'))
 
+
         var option = {
+
+
+            title: {
+                text: '成绩',
+                link: 'http://www.baidu.com',
+                textStyle: {
+                    color: 'red'
+                }
+            },
             xAxis: {
                 type: 'category',
-                data: ['小米','小胡', '小明']
+                data: ['小米', '小胡', '小明']
             },
             yAxis: {
-                type:'value'
+                type: 'value'
             },
             series: [
                 {
                     name: '语文',
                     type: 'bar',
-                    data: [70,92, 87]
+                    data: [70, 92, 87]
                 }
             ]
         }
@@ -36,6 +46,6 @@
         mChars.setOption(option)
     </script>
 </body>
- 
+
 
 </html>

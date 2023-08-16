@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Code/lib/echarts.min.js"></script>
+    <script src="../Code/theme/itcast.js"></script>
+
+
+</head>
+
+<body>
+    <div style="width: 600px;height: 400px;"></div>
+
+    <script>
+        var mChars = echarts.init(document.querySelector('div'),'itcast')
+
+        var xDataArr = ['小米', '小胡', '小明', '宇宇', '超超', '杨洋', '闰土', '跳跳']
+        var yDataArr = [77, 55, 99, 40, 68, 90, 100, 45]
+        var option = {
+
+
+        
+            xAxis: {
+                type: 'category',
+                 data: xDataArr
+            },
+            yAxis: {
+            type: 'value'
+               
+               
+
+            },
+            series: [
+               
+                {
+                    type: 'bar',
+                    data:yDataArr,
+                    itemStyle:{
+                        // color:{
+                        //     type:'linear',//线性渐变
+                        //     x:0,
+                        //     y:0,
+                        //     x2:0,
+                        //     y2:1,
+                        //     colorStops:[
+                        //         {
+                        //           offset: 0, color:'red'
+                        //         },
+                        //         {
+                        //             offset: 1, color:'blue'
+                                  
+                        //         }
+                        //     ]
+                        // }
+
+                        color: {
+                            type: 'radial',
+                            x:0.5,
+                            y:0.5,
+                            r:0.5,
+                            colorStops: [
+                                {
+                                    offset: 0, color: 'red'
+                                },
+                                {
+                                    offset: 1, color: 'blue'
+                                },
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+
+        mChars.setOption(option)
+    </script>
+</body>
+
+
+</html>

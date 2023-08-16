@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Code/lib/echarts.min.js"></script>
+    <script src="../Code/lib/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+    <div style="width: 600px;height:400px"></div>
+    <script>
+        //1. ECharts最基本的代码结构
+        //2. x轴和y轴数据 二维数组 [ [身高,体重],...   ]
+        //3. 将type的值设置为scatter, x轴和y轴的type都是value
+        var mCharts = echarts.init(document.querySelector("div"))
+         mCharts.showLoading()
+        $.get('../data/test_data.json', function (ret) {
+            mCharts.hideLoading()
+        
+            var axisData = []
+            for (var i = 0; i < ret.length; i++) {
+                var height = ret[i].height
+                var weight = ret[i].weight
+                var newArr = [height, weight]
+                axisData.push(newArr)
+
+            }
+            console.log(axisData)
+
+            var option = {
+
+                xAxis: {
+                    type: 'value',
+                    scale: true
+                },
+                yAxis: {
+                    type: 'value',
+                    scale: true
+                },
+                series: [
+                    {
+                        // type: 'scatter',
+                        type: 'effectScatter',
+                        showEffectOn: 'emphasis',
+                        rippleEffect: {
+                            scale: 10
+                        },
+                        data: axisData,
+                        //  SymbolSize:40,
+                        SymbolSize: function (arg) {
+                            // console.log(arg);
+                            var height = arg[0] / 100
+                            var weight = arg[1]
+                            //bmi = 体重kg /（身高m*身高m） 大于28，就代表肥胖
+                            var bmi = weight / (height * height)
+                            if (bmi > 28) {
+                                return 20
+                            }
+                            return 5
+                        },
+                        itemStyle: {
+                            color: function (arg) {
+                                // console.log(arg);
+                                var height = arg.data[0] / 100
+                                var weight = arg.data[1]
+                                //bmi = 体重kg /（身高m*身高m） 大于28，就代表肥胖
+                                var bmi = weight / (height * height)
+                                if (bmi > 28) {
+                                    return 'red'
+                                }
+                                return 'green'
+                                // return 'pink'
+                            }
+                        }
+                    }
+                ]
+
+            }
+            mCharts.setOption(option)
+
+        })
+
+
+    </script>
+</body>
+
+</html>
